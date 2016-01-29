@@ -1,7 +1,8 @@
-# lecture1_spec.rb
+# lecture2_spec.rb
 require_relative '../config/environment'
 require 'rails_helper'
 require 'test_utils'
+require 'pp'
 
 describe "Module #3 Lecture 2 1:M Linked Tests" do
   include Test_utils
@@ -131,10 +132,14 @@ describe "Module #3 Lecture 2 1:M Linked Tests" do
 
   context "rq05" do 
 
-    before :all do
+    before :each do
       Racer.delete_all
       Entrant.delete_all
-      @racer = Racer.create(:fn=>"cat", :ln=>"inhat", :dob=>Date.new(1990, 10, 10))
+      begin
+        Contest.delete_all
+      rescue NameError
+      end
+      #@racer = Racer.create(:fn=>"cat", :ln=>"inhat", :dob=>Date.new(1990, 10, 10))
     end
 
     it "Entrant has M:1 linked unidirectional relationship to racer" do
@@ -142,18 +147,35 @@ describe "Module #3 Lecture 2 1:M Linked Tests" do
     end
 
     it "Can navigate from Entrant to Racer" do
-      entrant = Entrant.new(:id=>1, :racer=>@racer, :group=>"Masters")
+      racer = Racer.create(:fn=>"cat", :ln=>"inhat", :dob=>Date.new(1990, 10, 10)) 
+      puts "Call Entrant.new"     
+      entrant = Entrant.new(:id=>1, :racer=>racer, :group=>"Masters")
+
+      begin
+        contest = Contest.create(:name=>"contest", :date=>Date.new(2010,1,1))
+      rescue NameError
+        # do nothing
+      end
+         
       expect(entrant.name).to be_nil
       expect(entrant.id).to be 1
       expect(entrant.group).to eql "Masters"
-      expect(entrant.racer_id).to eql @racer.id
+      expect(entrant.racer_id).to eql racer.id
+      begin
+        contest.entrants << entrant
+      rescue NameError
+      end
       entrant.save
-    end
 
-    it "Association with Racer takes racer name for entrant" do
-      e_db = Entrant.find_by(:id=>1)
-      expect(e_db.racer_id).to eql @racer.id
-      expect(e_db.name).to eql ("#{@racer.last_name}, #{@racer.first_name}")
+      e_db = nil
+      begin
+        contest = Contest.where('entrants._id' => 1).first
+        e_db = contest.entrants.select{|e| e._id == 1}.first
+      rescue NameError
+        e_db = Entrant.find_by(:id=>1)
+      end
+      expect(e_db.racer_id).to eql racer.id
+      expect(e_db.name).to eql ("#{racer.last_name}, #{racer.first_name}")
     end
   end
 
