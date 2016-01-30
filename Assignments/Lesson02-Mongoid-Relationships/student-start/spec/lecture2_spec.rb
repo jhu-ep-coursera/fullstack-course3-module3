@@ -126,7 +126,7 @@ describe "Module #3 Lecture 2 1:M Linked Tests" do
       expect(entrant.id).to be 1
       expect(entrant.name).to eql "test entrant"
       expect(entrant.group).to eql "test group"
-      expect(entrant.secs).to be 100.5 
+      expect(entrant.secs).to eq 100.5 
     end
   end   
 
