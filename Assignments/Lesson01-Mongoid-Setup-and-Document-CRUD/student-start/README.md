@@ -25,7 +25,7 @@ $ rails c -e test
 The console will indicate that the test environment is loaded after you issue the command.
 
 You can find details of the Mongoid API on the 
-[`Mongoid Tutorial Page`](https://docs.mongodb.org/ecosystem/tutorial/ruby-mongoipd-tutorial/)
+[`Mongoid Tutorial Page`](https://docs.mongodb.org/ecosystem/tutorial/ruby-mongoid-tutorial/)
 
 ## Functional Requirements
 
@@ -597,4 +597,4 @@ There is no submission required for this assignment but the
 skills learned will be part of a follow-on assignment so 
 please complete this to the requirements of the unit test.
 
-## Last Updated: 2016-01-02
+## Last Updated: 2016-01-30
