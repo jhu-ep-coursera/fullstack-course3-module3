@@ -473,7 +473,7 @@ next section.
     ```
 
     ```shell
-    $ rspec spec/lecture2_spec.rb -r rq01
+    $ rspec spec/lecture2_spec.rb -e rq01
     ```
 
 2. Create a M:1 linked, uni-directional relationship from `Contest` to `Venue` using 
@@ -620,7 +620,7 @@ for `Contest`s with its primary key listed as a foreign key. The relationship mu
     ```
 
     ```shell
-    $ rspec spec/lecture2_spec.rb -r rq03
+    $ rspec spec/lecture2_spec.rb -e rq03
     ```
 
 4.  Use the `rails generate` command to create a model class called `Entrant` with the following fields:
@@ -638,7 +638,7 @@ for `Contest`s with its primary key listed as a foreign key. The relationship mu
     ```
 
     ```shell
-    $ rspec spec/lecture2_spec.rb -r rq04
+    $ rspec spec/lecture2_spec.rb -e rq04
     ```
 
 5. Add a M:1 uni-directional, linked relationship from `Entrant` to `Racer` using the `belongs_to` 
@@ -840,11 +840,11 @@ started in this section.
     $ rspec spec/lecture3_spec.rb -e rq04
     ```
 
-5. Add an instance method called `racers` that re-implements access to
+5. Add an instance method called `races` that re-implements access to
 the now embedded `Entrant` documents from `Racer` using a query and 
 application logic (as the error message suggests.) This method must:
 
-    * be called `racers`
+    * be called `races`
     * query for all `Contest` instances that contain an `Entrant` 
     with a foreign key (`racer_id`) equal to the primary key (`_id`)
     of the current `Racer` instance (**Hint**: `where` function) and
@@ -968,7 +968,7 @@ using the `has_one` macro to make it bi-directional. This relationship must:
     ```
 
     ```shell
-    $ rspec spec/lecture4_spec.rb -r rq03
+    $ rspec spec/lecture4_spec.rb -e rq03
     ```    
 
 ### Lecture 5: M:M Linked
@@ -1110,7 +1110,7 @@ the presence of `first_name` and `last_name`.
     ```
 
     ```shell
-    $ rspec spec/lecture6_spec.rb -r rq01
+    $ rspec spec/lecture6_spec.rb -e rq01
     ```
 
 2. Update the relationship from `Entrant` to `Racer` so that `Racer` 
@@ -1134,7 +1134,7 @@ will be validated each time `Entrant` is validated.
     ```
 
     ```shell
-    $ rspec spec/lecture6_spec.rb -r rq02
+    $ rspec spec/lecture6_spec.rb -e rq02
     ```
 
 3. Update the relationship from `MedicalRecord` to `Racer` so that 
@@ -1154,7 +1154,7 @@ the relationship is required to exist for `MedicalRecord` to be valid.
     ```
 
     ```shell
-    $ rspec spec/lecture6_spec.rb -r rq03
+    $ rspec spec/lecture6_spec.rb -e rq03
     ```
 
 4. Update the relationship from `Venue` to `Contest` to have `Venue`
