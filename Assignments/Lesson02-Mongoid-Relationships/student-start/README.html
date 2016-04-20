@@ -290,7 +290,7 @@ group <span class="st">:test</span> <span class="kw">do</span>
 <p>You can use the rails console to demonstrate your new model class, fields, and field mappings.</p>
 <pre class="sourceCode ruby"><code class="sourceCode ruby">&gt; <span class="dt">Contest</span>.new
  =&gt; <span class="co">#&lt;Contest _id: 56761701e301d0a1fb00000c, updated_at: nil, name: nil, date: nil&gt; </span></code></pre>
-<pre class="shell"><code>$ rspec spec/lecture2_spec.rb -r rq01</code></pre></li>
+<pre class="shell"><code>$ rspec spec/lecture2_spec.rb -e rq01</code></pre></li>
 <li><p>Create a M:1 linked, uni-directional relationship from <code>Contest</code> to <code>Venue</code> using the <code>belongs_to</code> macro. This relationship must:</p>
 <ul>
 <li>be called <code>venue</code></li>
@@ -366,7 +366,7 @@ D, | {<span class="st">&quot;update&quot;</span>=&gt;<span class="st">&quot;cont
 <p>Further accesses for <code>Contest</code> instances for the <code>Venue</code> come up empty.</p>
 <pre class="sourceCode ruby"><code class="sourceCode ruby">&gt; v.contests.map {|c| c.name}
  =&gt; [] </code></pre>
-<pre class="shell"><code>$ rspec spec/lecture2_spec.rb -r rq03</code></pre></li>
+<pre class="shell"><code>$ rspec spec/lecture2_spec.rb -e rq03</code></pre></li>
 <li><p>Use the <code>rails generate</code> command to create a model class called <code>Entrant</code> with the following fields:</p>
 <ul>
 <li><code>_id</code> : Integer -- assigned to hold the <code>number</code> of the entrant</li>
@@ -377,7 +377,7 @@ D, | {<span class="st">&quot;update&quot;</span>=&gt;<span class="st">&quot;cont
 <p>You can demonstrate your new model class using the rails console.</p>
 <pre class="sourceCode ruby"><code class="sourceCode ruby">&gt; <span class="dt">Entrant</span>.new(<span class="st">:id=</span>&gt;<span class="dv">1</span>)
  =&gt; <span class="co">#&lt;Entrant _id: 1, name: nil, group: nil, secs: nil&gt;</span></code></pre>
-<pre class="shell"><code>$ rspec spec/lecture2_spec.rb -r rq04</code></pre></li>
+<pre class="shell"><code>$ rspec spec/lecture2_spec.rb -e rq04</code></pre></li>
 <li><p>Add a M:1 uni-directional, linked relationship from <code>Entrant</code> to <code>Racer</code> using the <code>belongs_to</code> macro. This relationship must:</p>
 <ul>
 <li>be called <code>racer</code></li>
@@ -483,9 +483,9 @@ D, | {<span class="st">&quot;find&quot;</span>=&gt;<span class="st">&quot;entran
     <span class="st">&quot;racer_id&quot;</span>=&gt;<span class="dt">BSON</span>::<span class="dt">ObjectId</span>(<span class="st">&#39;5675ff11e301d0a1fb000004&#39;</span>),
     <span class="st">&quot;name&quot;</span>=&gt;<span class="st">&quot;inhat, cat&quot;</span>}]}</code></pre>
 <pre class="shell"><code>$ rspec spec/lecture3_spec.rb -e rq04</code></pre></li>
-<li><p>Add an instance method called <code>racers</code> that re-implements access to the now embedded <code>Entrant</code> documents from <code>Racer</code> using a query and application logic (as the error message suggests.) This method must:</p>
+<li><p>Add an instance method called <code>races</code> that re-implements access to the now embedded <code>Entrant</code> documents from <code>Racer</code> using a query and application logic (as the error message suggests.) This method must:</p>
 <ul>
-<li>be called <code>racers</code></li>
+<li>be called <code>races</code></li>
 <li>query for all <code>Contest</code> instances that contain an <code>Entrant</code> with a foreign key (<code>racer_id</code>) equal to the primary key (<code>_id</code>) of the current <code>Racer</code> instance (<strong>Hint</strong>: <code>where</code> function) and</li>
 <li>return references to only the embedded documents (<strong>Hint</strong>: <code>map</code> function)</li>
 </ul>
@@ -550,7 +550,7 @@ racer.medical_record.destroy</code></pre>
 {<span class="st">&quot;_id&quot;</span>=&gt;<span class="dt">BSON</span>::<span class="dt">ObjectId</span>(<span class="st">&#39;56765840e301d0b210000000&#39;</span>),
  <span class="st">&quot;conditions&quot;</span>=&gt;[<span class="st">&quot;C&quot;</span>, <span class="st">&quot;D&quot;</span>],
  <span class="st">&quot;racer_id&quot;</span>=&gt;<span class="dt">BSON</span>::<span class="dt">ObjectId</span>(<span class="st">&#39;5675ff11e301d0a1fb000004&#39;</span>)}</code></pre>
-<pre class="shell"><code>$ rspec spec/lecture4_spec.rb -r rq03</code></pre></li>
+<pre class="shell"><code>$ rspec spec/lecture4_spec.rb -e rq03</code></pre></li>
 </ol>
 <h3 id="lecture-5-mm-linked">Lecture 5: M:M Linked</h3>
 <p>In this section we will focus on implementing a relationship where the remote foreign key is stored on both sides of the relationship as a part of an M:M bi-directional relationship.</p>
@@ -629,7 +629,7 @@ summary:
 resolution:
   <span class="dt">Try</span> persisting the document with valid data <span class="kw">or</span> remove the
   validations.</code></pre>
-<pre class="shell"><code>$ rspec spec/lecture6_spec.rb -r rq01</code></pre></li>
+<pre class="shell"><code>$ rspec spec/lecture6_spec.rb -e rq01</code></pre></li>
 <li><p>Update the relationship from <code>Entrant</code> to <code>Racer</code> so that <code>Racer</code> will be validated each time <code>Entrant</code> is validated.</p>
 <p>You can demonstrate your validation cascades across relationships using the rails console. In the following, we instantiate an <code>Entrant</code> with an invalid <code>Racer</code>. The <code>Entrant</code> is reported as an error because it references an invalid <code>Racer</code>. We can walk the relationship to the <code>Racer</code> to determine more details about its validation error.</p>
 <pre class="sourceCode ruby"><code class="sourceCode ruby">&gt; entrant=<span class="dt">Entrant</span>.create(<span class="st">:racer=</span>&gt;<span class="dt">Racer</span>.new)
@@ -639,7 +639,7 @@ resolution:
  =&gt; {<span class="st">:racer=</span>&gt;[<span class="st">&quot;is invalid&quot;</span>]} 
 &gt; entrant.racer.errors.messages
  =&gt; {<span class="st">:first_name=</span>&gt;[<span class="st">&quot;can&#39;t be blank&quot;</span>], <span class="st">:last_name=</span>&gt;[<span class="st">&quot;can&#39;t be blank&quot;</span>]} </code></pre>
-<pre class="shell"><code>$ rspec spec/lecture6_spec.rb -r rq02</code></pre></li>
+<pre class="shell"><code>$ rspec spec/lecture6_spec.rb -e rq02</code></pre></li>
 <li><p>Update the relationship from <code>MedicalRecord</code> to <code>Racer</code> so that the relationship is required to exist for <code>MedicalRecord</code> to be valid.</p>
 <p>You can demonstrate your required relationship using the rails console. In the example below, <code>MedicalRecord</code> is invalid because it does not have a relationship to a <code>Racer</code>.</p>
 <pre class="sourceCode ruby"><code class="sourceCode ruby">&gt; m=<span class="dt">MedicalRecord</span>.create
@@ -648,7 +648,7 @@ resolution:
  =&gt; <span class="dv">false</span> 
 &gt; m.errors.messages
  =&gt; {<span class="st">:racer=</span>&gt;[<span class="st">&quot;can&#39;t be blank&quot;</span>]}</code></pre>
-<pre class="shell"><code>$ rspec spec/lecture6_spec.rb -r rq03</code></pre></li>
+<pre class="shell"><code>$ rspec spec/lecture6_spec.rb -e rq03</code></pre></li>
 <li><p>Update the relationship from <code>Venue</code> to <code>Contest</code> to have <code>Venue</code> restricted from being deleted if there is a child <code>Contest</code> referencing it.</p>
 <p>Your new relationship constraint can be demonstrated using the rails console. In the example below, we create a new <code>Venue</code> and associated <code>Contest</code>. <code>Contest</code> is stored with the foreign key to <code>Venue</code>.</p>
 <pre class="sourceCode ruby"><code class="sourceCode ruby">&gt; venue=<span class="dt">Venue</span>.create(<span class="st">:name=</span>&gt;<span class="st">&quot;Flat Field&quot;</span>)                
