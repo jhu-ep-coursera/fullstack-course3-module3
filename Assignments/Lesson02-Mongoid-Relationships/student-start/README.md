@@ -58,7 +58,7 @@ and an embedded linked relationship between `Entrant` and `Racer`.
     * Add the `mongoid`, `rspec-rails`, and `mongoid-rspec` gems to your Gemfile and run 	 `bundle`. Notice that the `:test` group encapsulates the two related `rspec` gems.
     
     	```ruby
-    	gem 'mongoid', '~> 5.0.0.'
+    	gem 'mongoid', '~> 5.0.0'
     	
     	group :test do
     		gem 'rspec-rails', '~> 3.0'
