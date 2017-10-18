@@ -228,7 +228,7 @@ mappings must:
 
     * map the model class to be stored in the `racer1` collection
     * alias the model class `first_name` attribute to the `fn` document property
-    * alias the model class `first_name` attribute to the `ln` document property
+    * alias the model class `last_name` attribute to the `ln` document property
     * alias the model class `date_of_birth` attribute to the `dob` document property
     * keep the model class `gender` attribute mapped to the `gender` document property
 
