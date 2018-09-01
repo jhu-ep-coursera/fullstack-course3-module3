@@ -247,8 +247,7 @@ A class method by this name is required by Mongoid for custom types.
        geolocation: {:type=>"Point", :coordinates=>[0, 1]}> 
 
     > Address.collection.find.first
-     => {"_id"=>BSON::ObjectId('5675f08de301d0a1f    Can navigate from Racer to Address (FAILED - 2)
-b000000'), 
+     => {"_id"=>BSON::ObjectId('5675f08de301d0a1fb000000'), 
        "geolocation"=>{"type"=>"Point", "coordinates"=>[0, 1]}}
 
     > Address.first.geolocation
